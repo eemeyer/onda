@@ -73,8 +73,8 @@ body {
 }
 .no-js #site-nav {
 	display: block;
-}	
-#nav-toggle { 
+}
+#nav-toggle {
 	z-index: 9999;
 	display: block;
 	vertical-align: top;
@@ -145,10 +145,30 @@ body {
     -webkit-animation-delay: .75s;
     -moz-animation-delay: .75s;
     -o-animation-delay: .75s;
-    animation-delay: .75s;	
+    animation-delay: .75s;
 	a { color: @black; }
 }
 .site-description {
+	margin-bottom: 0;
+	margin-top: 0;
+	font-family: @alt-font;
+	.font-rem(16);
+	font-weight: 400;
+	font-style: italic;
+	-webkit-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	animation-duration: 1s;
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    animation-delay: 1s;
+	@media @medium {
+		.font-rem(20);
+	}
+}
+
+.site-contact {
 	margin-top: 0;
 	font-family: @alt-font;
 	.font-rem(16);
@@ -363,13 +383,13 @@ span + .entry-title {
 		.font-rem(14);
 		line-height: 2.5;
 	}
-	a { 
+	a {
 		padding: 4px 6px;
 		margin: 2px;
 		background-color: lighten(@black, 90);
 		.rounded(4px);
 		text-decoration: none;
-		span { 
+		span {
 			vertical-align: super;
 			.font-rem(10);
 		}
