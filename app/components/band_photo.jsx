@@ -24,11 +24,32 @@ var BandPhoto = React.createClass({
 	},
 
 	render: function () {
-		return <img src={this.props.siteUrl + (this.state.which === 'main' ? this.props.main : this.props.alt)}
-			onMouseEnter={this.alternate}
-			onMouseOut={this.restore}
-			onTouchStart={this.alternate}
-			onTouchEnd={this.restore}/>;
+		return <div
+			style={{position: 'relative', margin: '0 auto'}}
+				onMouseEnter={this.alternate}
+				onMouseOut={this.restore}
+				onTouchStart={this.alternate}
+				onTouchEnd={this.restore}
+			>
+			<img src={this.props.siteUrl + this.props.alt}
+				style={{
+					position: 'relative',
+					left:0,
+					'-webkit-transition': 'opacity 0.5s ease-in-out',
+					'-moz-transition': 'opacity 0.5s ease-in-out',
+					'-o-transition': 'opacity 0.5s ease-in-out',
+					'transition': 'opacity 0.5s ease-in-out'
+			}}/>
+			<img src={this.props.siteUrl + this.props.main} style={{
+					opacity: this.state.which === 'main' ? 1 : 0,
+					position: 'absolute',
+					left:0,
+					'-webkit-transition': 'opacity 0.5s ease-in-out',
+					'-moz-transition': 'opacity 0.5s ease-in-out',
+					'-o-transition': 'opacity 0.5s ease-in-out',
+					'transition': 'opacity 0.5s ease-in-out'
+			}}/>
+		</div>;
 	}
 });
 
