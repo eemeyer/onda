@@ -5,7 +5,8 @@ disqus_shortname:
 search:           true
 # Change url to your domain. Leave localhost server or blank when working locally.
 # You don't need to specify the protocol if you want it available on http and https. Example: //localhost:4000
-url:              http://www.ondaband.com
+#url:              //www.ondaband.com
+url: http://localhost:4000
 
 # Owner/author information
 owner:
@@ -49,7 +50,7 @@ highlighter: pygments
 markdown:    kramdown
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title/
+permalink:  /:categories/:year/:month/:day/:title/
 
 kramdown:
   auto_ids: true
