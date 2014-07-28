@@ -24,7 +24,11 @@ var BandPhoto = React.createClass({
 	},
 
 	getInitialState: function () {
-		return {which: 'main', height: 0};
+		return {
+			which: 'main',
+			height: 0,
+			loaded: false
+		};
 	},
 
 	alternate: function () {
@@ -35,18 +39,28 @@ var BandPhoto = React.createClass({
 		this.setState({which: 'main', height: this.refs.img.getDOMNode().offsetHeight});
 	},
 
+	loaded: function () {
+		this.setState({loaded: true});
+		this.checkSize();
+	},
+
 	render: function () {
 		return <div
-			style={{position: 'relative', margin: '0 auto', height: this.state.height + 'px'}}
+			style={{position: 'relative', margin: '0 auto', height: this.state.height}}
 				onMouseEnter={this.alternate}
 				onMouseOut={this.restore}
 				onTouchStart={this.alternate}
 				onTouchEnd={this.restore}
 			>
 			<img src={this.props.siteUrl + this.props.alt}
-				style={{ position: 'absolute', left:0 }}
-				onLoad={this.checkSize}/>
-			<img ref='img' src={this.props.siteUrl + this.props.main} style={{
+				style={{
+					position: 'absolute',
+					left: 0,
+					display: !this.state.loaded ? 'none' : 'inherit'
+				}}/>
+			<img ref='img' src={this.props.siteUrl + this.props.main}
+				onLoad={this.loaded}
+				style={{
 					opacity: this.state.which === 'main' ? 1 : 0,
 					position: 'absolute',
 					left: 0,
