@@ -1,9 +1,9 @@
 ---
 layout: page
-permalink: /gigs/
-title: Gigs
+permalink: /shows/
+title: Shows
 description: "Where to find us"
-tags: [Gigs]
+tags: [Shows]
 ---
 <ul class="post-list">
 {% for post in site.categories.gigs limit:10 %}
