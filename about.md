@@ -5,7 +5,7 @@ title: About Onda
 tags: [Onda members]
 ---
 
-Onda plays Brazilian jazz
+Onda plays Brazilian jazz. We are available for private parties, corporate events, and weddings.
 
 ## Members:
 
