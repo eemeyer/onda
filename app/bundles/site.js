@@ -6,13 +6,18 @@ var React = require('react');
 
 window.React = React;
 
-var contactElem = document.getElementById('contactLink');
-if (contactElem) {
-	React.renderComponent(Contact({}, contactElem.innerHTML), contactElem);
-}
+(function () {
+	var elem = document.getElementById('contactLink');
+	if (elem) {
+		React.renderComponent(Contact({}, elem.innerHTML), elem);
+	}
 
-var bandPhotoElem = document.getElementById('bandPhoto');
-if (bandPhotoElem) {
-	var siteUrl = bandPhotoElem.getAttribute('data-siteUrl');
-	React.renderComponent(BandPhoto({siteUrl: siteUrl}, contactElem.innerHTML), contactElem);
-}
+})();
+
+(function () {
+	var elem = document.getElementById('bandPhoto');
+	if (elem) {
+		var siteUrl = elem.getAttribute('data-siteUrl');
+		React.renderComponent(BandPhoto({siteUrl: siteUrl}, elem.innerHTML), elem);
+	}
+})();
