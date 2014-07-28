@@ -7,12 +7,8 @@ var ContactLink = React.createClass({
 		return {email: 'booking@ondaband.com'};
 	},
 
-	sendMail: function () {
-		window.open('mailto:' + this.props.email);
-		return false;
-	},
 	render: function () {
-		return <a href='#mailto' onClick={this.sendMail}>{this.props.children}</a>;
+		return <a href={'mailto:' + this.props.email}>{this.props.children}</a>;
 	}
 });
 
