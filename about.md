@@ -10,6 +10,7 @@ Onda plays Brazilian jazz. We are available for private parties, corporate event
 ## Members:
 
 * Nelson Johns, guitar
-* [Stephen Coffman](http://stephencoffman.wordpress.com/), vibraphone
+* [Stephen Coffman]({{site.url}}/about/stephen/), vibraphone
 * Ana Mitchell, percussion
 * Eric Meyer, double bass
+
