@@ -31,6 +31,14 @@ var BandPhoto = React.createClass({
 		};
 	},
 
+	touchStart: function () {
+		var self = this;
+		self.setState({which: 'alt', height: self.refs.img.getDOMNode().offsetHeight});
+		window.setTimeout(function () {
+			self.setState({which: 'main', height: self.refs.img.getDOMNode().offsetHeight});
+		}, 1000);
+	},
+
 	alternate: function () {
 		this.setState({which: 'alt', height: this.refs.img.getDOMNode().offsetHeight});
 	},
@@ -49,8 +57,7 @@ var BandPhoto = React.createClass({
 			style={{position: 'relative', margin: '0 auto', height: this.state.height}}
 				onMouseEnter={this.alternate}
 				onMouseOut={this.restore}
-				onTouchStart={this.alternate}
-				onTouchEnd={this.restore}
+				onTouchStart={this.touchStart}
 			>
 			<img src={this.props.siteUrl + this.props.alt}
 				style={{
