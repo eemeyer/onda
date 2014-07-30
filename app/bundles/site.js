@@ -6,6 +6,8 @@ var React = require('react');
 
 window.React = React;
 
+var siteUrl = document.getElementsByTagName('html')[0].getAttribute('data-siteUrl');
+
 (function () {
 	var elem = document.getElementById('contactLink');
 	if (elem) {
@@ -17,7 +19,6 @@ window.React = React;
 (function () {
 	var elem = document.getElementById('bandPhoto');
 	if (elem) {
-		var siteUrl = elem.getAttribute('data-siteUrl');
 		React.renderComponent(BandPhoto({siteUrl: siteUrl}, elem.innerHTML), elem);
 	}
 })();
