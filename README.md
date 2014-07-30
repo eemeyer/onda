@@ -4,12 +4,12 @@
 ## Install software
 
 ```
-gem install jekyll
+bundle install
 ```
 
 ## development mode building
 ```
-jekyll serve --watch --config _config.yml,_config_local.yml
+bundle exec jekyll serve --watch --config _config.yml,_config_local.yml
 ```
 
 ## Build the CSS
