@@ -62,6 +62,12 @@ var Shows = React.createClass({
 		var seenPast = false;
 		return <span>{
 			shows.map(function (show, idx) {
+				if (idx === 0 && !show.past) {
+					return <span>
+						<li>Upcoming shows...</li>
+						{Show(show)}
+					</span>;
+				}
 				if (show.past && !seenPast) {
 					seenPast = true;
 					if (idx !== 0) {
