@@ -1,5 +1,5 @@
 [
-	{% for post in site.categories.shows %}
+	{% for post in site.shows %}
 		{
 		  "title"      : "{{ post.title | escape }}",
 		  "venue"      : "{{ post.venue | escape }}",
