@@ -5,10 +5,7 @@ description: "Onda Jazz Band plays Brazilian and latin jazz"
 tags: [Onda, Jazz, Brazil]
 ---
 <script type="text/javascript">
-	var shows =
-	{% include shows.json %}
-	|| []
-	;
+	var shows = {% include shows.json %} || [];
 </script>
 <h1 class='entry-title'>Shows</h1>
 <ul class="post-list" id='shows'>
