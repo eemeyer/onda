@@ -20,31 +20,37 @@ var BandPhoto = React.createClass({
 	},
 
 	checkSize: function () {
-		this.setState({height: this.refs.img.getDOMNode().offsetHeight});
+		var left = (this.refs.container.getDOMNode().offsetWidth - this.refs.img.getDOMNode().offsetWidth) / 2;
+		this.setState({height: this.refs.img.getDOMNode().offsetHeight, left: left});
 	},
 
 	getInitialState: function () {
 		return {
 			which: 'main',
 			height: 0,
+			left: 0,
 			loaded: false
 		};
 	},
 
 	touchStart: function () {
 		var self = this;
-		self.setState({which: 'alt', height: self.refs.img.getDOMNode().offsetHeight});
+		self.checkSize();
+		self.setState({which: 'alt'});
 		window.setTimeout(function () {
-			self.setState({which: 'main', height: self.refs.img.getDOMNode().offsetHeight});
+			self.checkSize();
+			self.setState({which: 'main'});
 		}, 1000);
 	},
 
 	alternate: function () {
-		this.setState({which: 'alt', height: this.refs.img.getDOMNode().offsetHeight});
+		this.checkSize();
+		this.setState({which: 'alt'});
 	},
 
 	restore: function () {
-		this.setState({which: 'main', height: this.refs.img.getDOMNode().offsetHeight});
+		this.checkSize();
+		this.setState({which: 'main'});
 	},
 
 	loaded: function () {
@@ -54,6 +60,8 @@ var BandPhoto = React.createClass({
 
 	render: function () {
 		return <div
+			ref='container'
+			className='band-photo'
 			style={{position: 'relative', margin: '0 auto', height: this.state.height}}
 				onMouseEnter={this.alternate}
 				onMouseOut={this.restore}
@@ -62,7 +70,7 @@ var BandPhoto = React.createClass({
 			<img src={this.props.siteUrl + this.props.alt}
 				style={{
 					position: 'absolute',
-					left: 0,
+					left: this.state.left,
 					display: !this.state.loaded ? 'none' : 'inherit'
 				}}/>
 			<img ref='img' src={this.props.siteUrl + this.props.main}
@@ -70,7 +78,7 @@ var BandPhoto = React.createClass({
 				style={{
 					opacity: this.state.which === 'main' ? 1 : 0,
 					position: 'absolute',
-					left: 0,
+					left: this.state.left,
 					'-webkit-transition': 'opacity 0.5s ease-in-out',
 					'-moz-transition': 'opacity 0.5s ease-in-out',
 					'-o-transition': 'opacity 0.5s ease-in-out',
