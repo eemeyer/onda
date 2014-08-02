@@ -34,6 +34,7 @@
     "jshint": "^2.5.1",
     "jsxhint": "^0.4.13",
     "mkdirp": "^0.5.0",
+    "mold-source-map": "^0.3.0",
     "uglifyify": "^2.5.0"
   },
   "jshintConfig": {

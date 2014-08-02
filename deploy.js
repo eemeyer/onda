@@ -1,14 +1,15 @@
 'use strict';
 
-if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = 'development';
-}
-
 var async = require('async');
 var browserify = require('browserify');
 var fs = require('fs');
-var path = require('path');
 var mkdirp = require('mkdirp');
+var mold = require('mold-source-map');
+var path = require('path');
+
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'development';
+}
 
 async.series([
   function(callback) {
@@ -28,6 +29,7 @@ async.series([
       .transform('brfs')
       .transform('uglifyify')
       .bundle({debug: true})
+      .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'app')))
       .pipe(fs.createWriteStream(path.join('assets/app/js/', outName), 'w'))
       .on('end', function () {
         callback();
