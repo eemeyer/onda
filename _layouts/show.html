@@ -20,7 +20,7 @@
         {% endif %}
       </header>
       <footer class="entry-meta">
-        <span class="entry-date date published"><i class="icon-calendar-empty"></i> {{ page.when }}</time></span>
+        <span class="entry-date date published"><i class="icon-calendar-empty"></i> {{ page.when }}{% if page.time %} | {{ page.time}}{% endif %}</time></span>
         {% if site.disqus_shortname and page.comments %}<span class="entry-comments"><i class="icon-comment-alt"></i> <a href="#disqus_thread">Comment</a></span>{% endif %}
         <span><a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}"><i class="icon-link"></i> Permalink</a></span>
         {% if page.share %}

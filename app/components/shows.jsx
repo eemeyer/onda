@@ -13,6 +13,16 @@ var ShowDetail = React.createClass({
 	}
 });
 
+var ShowInfo = React.createClass({
+	getDefaultProps: function () {
+		return {};
+	},
+
+	render: function () {
+		return <span>{this.props.venue} <span className='show-date'>{this.props.when}{this.props.time && (' | ' + this.props.time)}</span>{this.props.children}</span>;
+	}
+});
+
 var Show = React.createClass({
 	getInitialState: function () {
 		return {detail: false};
@@ -26,10 +36,9 @@ var Show = React.createClass({
 	render: function () {
 		var hasContent = !!this.props.content;
 		if (hasContent) {
-			return <li key={this.props.url}><article><a href={this.props.url} onClick={this.display}>{this.props.venue} <span className='show-date'>{this.props.when}</span>
-				{this.state.detail && ShowDetail(this.props)}</a></article></li>;
+			return <li key={this.props.url}><article><a href={this.props.url} onClick={this.display}>{ShowInfo(this.props, this.state.detail && ShowDetail(this.props))}</a></article></li>;
 		}
-		return <li key={this.props.url}><article>{this.props.venue} <span className='show-date'>{this.props.when}</span></article></li>;
+		return <li key={this.props.url}><article>{ShowInfo(this.props)}</article></li>;
 	}
 });
 

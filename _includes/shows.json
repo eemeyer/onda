@@ -1,11 +1,8 @@
-[
-	{% for post in site.shows %}
-		{
-		  "title"      : {{ post.title | jsonify }},
-		  "venue"      : {{ post.venue | jsonify }},
-		  "url"        : "{{ site.url }}{{ post.url }}",
-		  "when"       : {{ post.when | jsonify }},
-		  "content": {{ post.content | jsonify }}
-		} {% if forloop.last %}{% else %},{% endif %}
-	{% endfor %}
-]
+[{% for post in site.shows %}{
+"title":{{ post.title | jsonify }},
+"venue":{{ post.venue | jsonify }},
+"url":"{{ site.url }}{{ post.url }}",
+"when":{{ post.when | jsonify }},
+"time":{{ post.time|jsonify}},
+"content":{{ post.content | jsonify }}
+}{% if forloop.last %}{% else %},{% endif %}{% endfor %}]
