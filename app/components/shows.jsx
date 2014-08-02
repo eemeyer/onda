@@ -3,9 +3,33 @@
 var moment = require('moment-timezone');
 var React = require('react');
 
-var Show = React.createClass({
+var ShowDetail = React.createClass({
+	getDefaultProps: function () {
+		return {};
+	},
+
 	render: function () {
-		return <li key={this.props.url}><article><a href={this.props.url}>{this.props.venue} <span className='show-date'>{this.props.when}</span></a></article></li>;
+		return <div>{this.props.content}</div>;
+	}
+});
+
+var Show = React.createClass({
+	getInitialState: function () {
+		return {detail: false};
+	},
+
+	display: function () {
+		this.setState({detail: !this.state.detail});
+		return false;
+	},
+
+	render: function () {
+		var hasContent = !!this.props.content;
+		if (hasContent) {
+			return <li key={this.props.url}><article><a href={this.props.url} onClick={this.display}>{this.props.venue} <span className='show-date'>{this.props.when}</span>
+				{this.state.detail && ShowDetail(this.props)}</a></article></li>;
+		}
+		return <li key={this.props.url}><article>{this.props.venue} <span className='show-date'>{this.props.when}</span></article></li>;
 	}
 });
 
