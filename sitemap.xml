@@ -17,4 +17,11 @@
         <loc>{{ site.url }}{{ post.url }}</loc>
     </url>
     {% endfor %}
+
+    {% for post in site.shows %}
+    <url>
+        <loc>{{ site.url }}{{ post.url }}</loc>
+    </url>
+    {% endfor %}
+
 </urlset>
