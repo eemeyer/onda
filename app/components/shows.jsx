@@ -70,7 +70,13 @@ var Shows = React.createClass({
 			show.daysAway = daysAway;
 			show.past = daysAway > 0;
 		}, this);
+		// sort future shows ascending, past shows descending...
 		shows.sort(function (b, a) {
+			if (!a.past && !b.past) { // both are upcoming
+				var tmp = a;
+				a = b;
+				b = tmp;
+			}
 			var diff = a.moment.diff(b.moment);
 			if (diff < 0) {
 				return -1;
