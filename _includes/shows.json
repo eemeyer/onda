@@ -4,5 +4,8 @@
 "url":"{{ site.url }}{{ post.url }}",
 "when":{{ post.when | jsonify }},
 "time":{{ post.time|jsonify}},
+"title":{{ post.title|jsonify}},
+"description":{{ post.description|jsonify}},
+"tags":{{ post.tags|jsonify}},
 "content":{{ post.content | jsonify }}
 }{% if forloop.last %}{% else %},{% endif %}{% endfor %}]

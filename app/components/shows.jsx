@@ -19,7 +19,7 @@ var ShowInfo = React.createClass({
 	},
 
 	render: function () {
-		return <span>{this.props.venue} <span className='show-date'>{this.props.when}{this.props.time && (' | ' + this.props.time)}</span>{this.props.children}</span>;
+		return <span>{this.props.title || this.props.venue} <span className='show-date'>{this.props.when}{this.props.time && (' | ' + this.props.time)}</span>{this.props.children}</span>;
 	}
 });
 
