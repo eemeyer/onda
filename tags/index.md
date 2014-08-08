@@ -1,8 +1,7 @@
 ---
 layout: page
-permalink: /tags/
 title: Tag Index
-description: "An archive of posts sorted by tag."
+excerpt: "An archive of posts sorted by tag."
 ---
 
 {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}

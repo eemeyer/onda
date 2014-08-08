@@ -280,17 +280,6 @@ select:focus {
 	::-webkit-input-placeholder {
 		@include font-rem(32);
 	}
-	.icon-remove-sign {
-		position: absolute;
-		top: .6rem;
-		right: 1rem;
-		display: block;
-		cursor: pointer;
-		text-align: center;
-		color: $white;
-		z-index: 1;
-		cursor: pointer;
-	}
 	.search-field::-webkit-search-decoration,
 	.search-field::-webkit-search-cancel-button,
 	.search-field::-webkit-search-results-button,
@@ -314,7 +303,7 @@ body.search-overlay {
 body.search-overlay:after {
 	content: '';
 	background-color: lighten($black,5);
-	background-color: fade($black,95);
+	background-color: rgba($black,.95);
 	width: 100%;
 	min-height: 100%;
 	height: 100%;

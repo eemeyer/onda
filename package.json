@@ -1,6 +1,11 @@
 {
   "name": "OndaWebsite",
   "author": "Eric Meyer",
+  "homepage: "http://www.ondaband.com",
+  "respository": {
+    "type": "git",
+    "url": "git://github.com/onda-jazz/website.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -30,28 +35,7 @@
     "grunt-contrib-jshint": "~0.6.3",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.2",
-    "grunt-recess": "~0.3.5",
-    "grunt-svgmin": "~0.2.0",
-    "jshint": "^2.5.1",
-    "jsxhint": "^0.4.13",
-    "mkdirp": "^0.5.0",
-    "mold-source-map": "^0.3.0",
-    "uglifyify": "^2.5.0"
-  },
-  "jshintConfig": {
-    "node": true,
-    "strict": true,
-    "browser": true,
-    "newcap": false,
-    "eqeqeq": true,
-    "curly": true,
-    "forin": true,
-    "freeze": true,
-    "immed": true,
-    "latedef": true,
-    "noarg": true,
-    "undef": true,
-    "unused": true,
-    "eqnull": true
+    "grunt-contrib-imagemin": "~0.2.0",
+    "grunt-svgmin": "~0.2.0"
   }
 }

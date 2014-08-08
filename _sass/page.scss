@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	background-color: $white;
+	background-color: $body-color;
 	border-top: 5px solid $black;
 	@media #{$medium} {
 		@include font-rem(20);
@@ -13,7 +13,7 @@ body {
 // --------------------------------------------------
 .navigation-wrapper {
 	text-align: center;
-	@include clearfix();
+	@include clearfix;
 	ul {
 		display: inline-block;
 		vertical-align: top;
@@ -21,7 +21,7 @@ body {
 		padding: 4px 20px;
 		background-color: $black;
 		@include rounded(0 0 10px 10px);
-		@include clearfix();
+		@include clearfix;
 	}
 	li {
 		display: block;
@@ -91,7 +91,7 @@ body {
 // --------------------------------------------------
 .masthead {
 	margin-top: 40px;
-	@include clearfix();
+	@include clearfix;
 	@media #{$medium} {
 		margin-top: 0;
 	}
@@ -195,13 +195,13 @@ body {
 // Main
 // --------------------------------------------------
 #main {
-	@include clearfix();
+	@include clearfix;
 }
 .entry,
 .hentry {
-	@include clearfix();
+	@include clearfix;
 	border-bottom: 1px solid lighten($black,80);
-	border-bottom: 1px solid fade($black,10);
+	border-bottom: 1px solid rgba($black,.10);
 }
 .entry-feature-image {
 	margin: 20px 0 0;
@@ -293,11 +293,11 @@ span + .entry-title {
 			display: block;
 			padding: 8px 0;
 			border-bottom: 1px solid lighten($black,80);
-			border-bottom: 1px solid fade($black,10);
+			border-bottom: 1px solid rgba($black,.10);
 		}
 	}
 }
-.author-photo {
+.bio-photo {
 	display: none;
 	@media #{$large} {
 		display: block;
@@ -305,7 +305,7 @@ span + .entry-title {
 		height: 150px;
 		margin-bottom: 10px;
 		@include rounded(150px);
-		@include clearfix();
+		@include clearfix;
 	}
 }
 .entry-content {
@@ -338,6 +338,7 @@ span + .entry-title {
 }
 // Pagination
 .pagination {
+	margin-top: 2em;
 	text-align: center;
 }
 // Page layout
@@ -361,8 +362,8 @@ span + .entry-title {
 	li {
 		padding: 8px 0;
 		border-bottom: 1px solid lighten($black,80);
-		border-bottom: 1px solid fade($black,10);
-		@include clearfix();
+		border-bottom: 1px solid rgba($black,.10);
+		@include clearfix;
 	}
 	span.show-date,
 	a > span.entry-date {
@@ -383,7 +384,7 @@ span + .entry-title {
 	margin: 0;
 	padding: 4px 0;
 	overflow: hidden;
-	@include clearfix();
+	@include clearfix;
 	&.inline li {
 		float: left;
 		@include font-rem(14);
@@ -410,7 +411,7 @@ span + .entry-title {
 	width: 90%;
 	padding-right: 5%;
 	padding-left: 5%;
-	@include clearfix();
+	@include clearfix;
 	@media #{$medium} {
 		top: 100px;
 	}
@@ -418,7 +419,7 @@ span + .entry-title {
 // Footer
 // --------------------------------------------------
 .footer-wrapper {
-	@include clearfix();
+	@include clearfix;
 	margin: 2em auto;
 	text-align: center;
 	font-family: $alt-font;

@@ -6,6 +6,7 @@ search:           false
 # Change url to your domain. Leave localhost server or blank when working locally.
 # You don't need to specify the protocol if you want it available on http and https. Example: //localhost:4000
 url:              http://www.ondaband.com
+locale: en_US
 
 # Owner/author information
 owner:
@@ -22,12 +23,13 @@ owner:
   instagram:
   flickr:
   tumblr:
-  # For Google Authorship https://plus.google.com/authorship
-  google_plus:
-
-# Analytics and webmaster tools stuff goes here
-google_analytics: UA-53378132-1
-google_verify:
+  # Analytics and webmaster tools stuff goes here
+  google:
+    plus:
+    analytics: UA-53378132-1
+    verify:
+    ad-client:
+  verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
 
@@ -35,16 +37,6 @@ collections:
   shows:
     output: true
     permalink: /shows/:path/
-
-# Links to include in top navigation
-# For external links add external: true
-links:
-  - title: Home
-    url: /
-  - title: About
-    url: /about/
-  - title: Listen
-    url: /listen/
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
@@ -63,16 +55,9 @@ kramdown:
   toc_levels: 1..6
   use_coderay: false
 
-  coderay:
-    coderay_line_numbers:
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
-
 include: [".htaccess"]
-exclude: ["app", "lib", "config.rb", "Gemfile", "Capfile", "README.md", "LICENSE", "Gemfile.lock", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "assets/less"]
+exclude: ["app", "lib", "config.rb", "Gemfile", "Capfile", "README.md", "LICENSE", "Gemfile.lock", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
 
 sass:
-    sass_dir: _sass
-
+  sass_dir: _sass
+  style: compressed
