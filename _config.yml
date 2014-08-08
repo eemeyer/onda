@@ -29,7 +29,7 @@ owner:
     analytics: UA-53378132-1
     verify:
     ad-client:
-  verify:
+    ad-slot:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
 
