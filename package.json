@@ -11,6 +11,7 @@
     "envify": "^1.2.1",
     "es5-shim": "^2.3.0",
     "fastclick": "^1.0.2",
+    "font-awesome": "^4.1.0",
     "jquery": "^1.11.1-beta1",
     "moment-timezone": "^0.2.0",
     "node-jsx": "~0.2.0",
