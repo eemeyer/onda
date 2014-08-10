@@ -36,9 +36,9 @@ var Show = React.createClass({
 	render: function () {
 		var hasContent = !!this.props.content;
 		if (hasContent) {
-			return <li key={this.props.url}><article><a href={this.props.url} onClick={this.display}>{ShowInfo(this.props, this.state.detail && ShowDetail(this.props))}</a></article></li>;
+			return <li><article><a href={this.props.url} onClick={this.display}>{ShowInfo(this.props, this.state.detail && ShowDetail(this.props))}</a></article></li>;
 		}
-		return <li key={this.props.url}><article>{ShowInfo(this.props)}</article></li>;
+		return <li><article>{ShowInfo(this.props)}</article></li>;
 	}
 });
 
@@ -64,7 +64,7 @@ var Shows = React.createClass({
 		var shows = this.props.shows.slice(0);
 		shows.forEach(function (show) {
 			var date = datePattern.exec(show.when)[0].trim();
-			var when = moment(date).tz(this.props.tz);
+			var when = moment(date, 'MMM DD, YYYY').tz(this.props.tz);
 			var daysAway = now.diff(when, 'days');
 			show.moment = when;
 			show.daysAway = daysAway;
@@ -102,7 +102,7 @@ var Shows = React.createClass({
 		return <span>{
 			shows.map(function (show, idx) {
 				if (idx === 0 && !show.past) {
-					return <span>
+					return <span key='upcoming'>
 						<li>Upcoming shows...</li>
 						{Show(show)}
 					</span>;
@@ -110,12 +110,13 @@ var Shows = React.createClass({
 				if (show.past && !seenPast) {
 					seenPast = true;
 					if (idx !== 0) {
-						return <span>
+						return <span key='past'>
 								<li>Past shows...</li>
 								{Show(show)}
 							</span>;
 					}
 				}
+				show.key = show.url;
 				return Show(show);
 			}, this)}
 		</span>;
