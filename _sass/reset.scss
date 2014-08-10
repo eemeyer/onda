@@ -1,3 +1,4 @@
+@import "mixins";
 //
 // Reset CSS
 // Adapted from http://github.com/necolas/normalize.css
@@ -35,7 +36,7 @@ video {
 // -------------------------
 
 audio:not([controls]) {
-    display: none;
+  display: none;
 }
 
 // Base settings
@@ -44,11 +45,11 @@ audio:not([controls]) {
 html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 // Focus states
 a:focus {
-  .tab-focus();
+  @include tab-focus();
 }
 // Hover & Active
 a:hover,
@@ -126,8 +127,8 @@ button,
 html input[type="button"], // Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls.
 input[type="reset"],
 input[type="submit"] {
-    -webkit-appearance: button; // Corrects inability to style clickable `input` types in iOS.
-    cursor: pointer; // Improves usability and consistency of cursor style between image-type `input` and others.
+  -webkit-appearance: button; // Corrects inability to style clickable `input` types in iOS.
+  cursor: pointer; // Improves usability and consistency of cursor style between image-type `input` and others.
 }
 label,
 select,
@@ -137,10 +138,10 @@ input[type="reset"],
 input[type="submit"],
 input[type="radio"],
 input[type="checkbox"] {
-    cursor: pointer; // Improves usability and consistency of cursor style between image-type `input` and others.
+  cursor: pointer; // Improves usability and consistency of cursor style between image-type `input` and others.
 }
 input[type="search"] { // Appearance in Safari/Chrome
-  .box-sizing(content-box);
+  @include box-sizing(content-box);
   -webkit-appearance: textfield;
 }
 input[type="search"]::-webkit-search-decoration,
@@ -205,7 +206,7 @@ textarea {
     max-width: 100% !important;
   }
 
-  @page {
+  .page {
     margin: 0.5cm;
   }
 
