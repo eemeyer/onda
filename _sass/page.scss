@@ -110,11 +110,6 @@ body {
 		}
 	}
 }
-.band-photo {
-	img {
-		width: 768px;
-	}
-}
 .site-logo {
 	img {
 		width: 100px;
@@ -365,7 +360,6 @@ span + .entry-title {
 		border-bottom: 1px solid rgba($black,.10);
 		@include clearfix;
 	}
-	span.show-date,
 	a > span.entry-date {
 		float: right;
 	}
