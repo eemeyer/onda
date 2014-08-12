@@ -63,17 +63,20 @@ var BandPhoto = React.createClass({
 			ref='container'
 			className='band-photo'
 			style={{position: 'relative', margin: '0 auto', height: this.state.height}}
+			>
+			<img src={this.props.siteUrl + this.props.alt}
 				onMouseEnter={this.alternate}
 				onMouseOut={this.restore}
 				onTouchStart={this.touchStart}
-			>
-			<img src={this.props.siteUrl + this.props.alt}
 				style={{
 					position: 'absolute',
 					left: this.state.left,
 					display: !this.state.loaded ? 'none' : 'inherit'
 				}}/>
 			<img ref='img' src={this.props.siteUrl + this.props.main}
+				onMouseEnter={this.alternate}
+				onMouseOut={this.restore}
+				onTouchStart={this.touchStart}
 				onLoad={this.loaded}
 				style={{
 					opacity: this.state.which === 'main' ? 1 : 0,
