@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /about/stephen/
-title: About Stephen Coffman
+title: Stephen Coffman
 tags: [Onda members, Stephen Coffman]
 ---
 
