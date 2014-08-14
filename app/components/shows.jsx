@@ -25,7 +25,7 @@ var ShowInfo = React.createClass({
 	},
 
 	render: function () {
-		return <span>{this.props.title || this.props.venue} <span className='show-date'>{this.props.when}{this.props.time && (' | ' + this.props.time)}</span>{this.props.children}</span>;
+		return <span>{this.props.title || this.props.venue} <span className='show-date'>{this.props.moment.format('dddd, MMMM D, YYYY')}{this.props.time && (' | ' + this.props.time)}</span>{this.props.children}</span>;
 	}
 });
 
@@ -81,7 +81,8 @@ var Shows = React.createClass({
 		var shows = this.state.shows.slice(0);
 		shows.forEach(function (show) {
 			var date = datePattern.exec(show.when)[0].trim();
-			var when = moment(date, 'MMM DD, YYYY').tz(this.props.tz);
+			var when = moment(date, 'MMM DD, YYYY', 'en').tz(this.props.tz);
+			when.locale(false); // back to browser default for output
 			var daysAway = now.diff(when, 'days');
 			show.moment = when;
 			show.daysAway = daysAway;
