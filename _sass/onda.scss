@@ -4,8 +4,9 @@
 	}
 }
 
-.post-list {
+.shows {
 	span.show-date {
+		@include font-rem(16);
 		float: right;
 	}
 	.show-detail p {
@@ -13,6 +14,9 @@
 	}
 	.show-detail {
 		margin-top: 0.5rem;
+	}
+	a:visited {
+		color: $link-color;
 	}
 }
 

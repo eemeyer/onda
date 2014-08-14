@@ -10,7 +10,7 @@ tags: [Onda, Jazz, Brazil]
 <a name='shows'>
 <h1 class='entry-title'>Shows</h1>
 </a>
-<ul class="post-list" id='shows'>
+<ul class="post-list shows" id='shows'>
 {% for post in site.shows limit:10 %}
   <li><article><a href="{{ site.url }}{{ post.url }}">{% if post.title %}{{ post.title }}{% else %}{{ post.venue }}{% endif %} <span class='show-date'>{{ post.when }}{% if post.time %} | {{ post.time}}{% endif %}</span></a></article></li>
 {% endfor %}
