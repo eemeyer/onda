@@ -9,3 +9,17 @@
 		float: right;
 	}
 }
+
+span.pageLinks {
+	@include font-rem(14);
+	&> a {
+		padding: 0 0.25rem;
+		&.currentPage {
+			background: #ccc;
+			@include rounded(4px);
+		}
+		&.nav:hover {
+			background-color: #ccc;
+		}
+	}
+}

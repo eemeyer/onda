@@ -44,6 +44,17 @@ var Show = React.createClass({
 
 var datePattern = /^[^|]+/;
 
+var PageLink = React.createClass({
+	navigate: function () {
+		this.props.callback(this.props.page);
+		return false;
+	},
+
+	render: function () {
+		return <a className='nav' href='#' onClick={this.navigate}>{this.props.children}</a>;
+	}
+});
+
 var Shows = React.createClass({
 	getDefaultProps: function () {
 		return {
@@ -55,7 +66,7 @@ var Shows = React.createClass({
 
 	getInitialState: function () {
 		return {
-			page: 1
+			page: 0
 		};
 	},
 
@@ -99,8 +110,7 @@ var Shows = React.createClass({
 			return 0;
 		});
 		var seenPast = false;
-		return <span>{
-			shows.map(function (show, idx) {
+		var elems = shows.map(function (show, idx) {
 				if (idx === 0 && !show.past) {
 					return <span key='upcoming'>
 						<li>Upcoming shows...</li>
@@ -118,8 +128,48 @@ var Shows = React.createClass({
 				}
 				show.key = show.url;
 				return Show(show);
-			}, this)}
+			}, this);
+		var page = this.paginate(elems);
+		var links = [];
+		var pageCount = Math.ceil(shows.length / this.props.pageSize);
+		if (this.props.pageSize > 0) {
+			if (this.state.page > 0) {
+				if (this.state.page - 1 !== 0) {
+					links.push(new PageLink({page: 0, callback: this.navigate, key:'<<'}, 'first'));
+				}
+				links.push(new PageLink({page:this.state.page - 1, callback: this.navigate, key:'<'}, 'prev'));
+			}
+			for (var i = Math.max(0, this.state.page - 3); i < this.state.page + 4 && i < pageCount; ++i) {
+				if (i === this.state.page) {
+					links.push(<a key='current' className='currentPage'>{i + 1}</a>);
+				} else {
+					links.push(new PageLink({page: i, callback: this.navigate, key: i}, String(i + 1)));
+				}
+			}
+			if (this.state.page + 1 < pageCount) {
+				links.push(new PageLink({page: this.state.page + 1, callback: this.navigate, key: '>'}, 'next'));
+				if (this.state.page + 1 < pageCount - 1) {
+					links.push(new PageLink({page: pageCount - 1, callback: this.navigate, key: '>>'}, 'last'));
+				}
+			}
+		}
+		return <span>
+			{page}
+			{links.length > 0 && <span className='pageLinks'>Page {this.state.page + 1} of {pageCount}: {links}</span>}
 		</span>;
+	},
+
+	paginate: function (shows) {
+		if (this.props.pageSize < 1) {
+			return shows;
+		}
+		var start = this.state.page * this.props.pageSize;
+		var end = Math.min(shows.length,  start + this.props.pageSize);
+		return shows.slice(start, end);
+	},
+
+	navigate: function (page) {
+		this.setState({page: page});
 	}
 });
 
