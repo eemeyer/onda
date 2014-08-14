@@ -13,13 +13,18 @@
 span.pageLinks {
 	@include font-rem(14);
 	&> a {
+		@include rounded(4px);
 		padding: 0 0.25rem;
+		margin-right: 0.125rem;
+		border: 1px solid #ccc;
 		&.currentPage {
 			background: #ccc;
-			@include rounded(4px);
 		}
 		&.nav:hover {
 			background-color: #ccc;
+		}
+		&.disabled-nav {
+			cursor: default;
 		}
 	}
 }

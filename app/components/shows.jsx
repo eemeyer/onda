@@ -46,12 +46,18 @@ var datePattern = /^[^|]+/;
 
 var PageLink = React.createClass({
 	navigate: function () {
+		if (!this.props.enabled) {
+			return false;
+		}
 		this.props.callback(this.props.page);
 		return false;
 	},
 
 	render: function () {
-		return <a className='nav' href='#' onClick={this.navigate}>{this.props.children}</a>;
+		if (this.props.enabled) {
+			return <a className='nav' href='#' onClick={this.navigate}>{this.props.children}</a>;
+		}
+		return <a className='disabled-nav' onClick={this.navigate}>{this.props.children}</a>;
 	}
 });
 
@@ -133,21 +139,46 @@ var Shows = React.createClass({
 		var links = [];
 		var pageCount = Math.ceil(shows.length / this.props.pageSize);
 		if (this.props.pageSize > 0) {
-			links.push(new PageLink({page: 0, callback: this.navigate, key:'<<'}, 'first'));
-			links.push(new PageLink({page: Math.max(0, this.state.page - 1), callback: this.navigate, key:'<'}, 'prev'));
+			links.push(new PageLink({
+					page: 0,
+					enabled: this.state.page !== 0,
+					callback: this.navigate,
+					key:'<<'},
+				'first'));
+			links.push(new PageLink({
+					page: Math.max(0, this.state.page - 1),
+					enabled: this.state.page !== 0,
+					callback: this.navigate,
+					key:'<'},
+				'prev'));
 			for (var i = Math.max(0, this.state.page - 3); i < this.state.page + 4 && i < pageCount; ++i) {
 				if (i === this.state.page) {
-					links.push(<a key='current' className='currentPage'>{i + 1}</a>);
+					links.push(<a key='current' className='currentPage'>Page {i + 1} of {pageCount}</a>);
 				} else {
-					links.push(new PageLink({page: i, callback: this.navigate, key: i}, String(i + 1)));
+					links.push(new PageLink({
+						page: i,
+						enabled: true,
+						callback: this.navigate,
+						key: i},
+					String(i + 1)));
 				}
 			}
-			links.push(new PageLink({page: Math.min(this.state.page + 1, pageCount - 1), callback: this.navigate, key: '>'}, 'next'));
-			links.push(new PageLink({page: pageCount - 1, callback: this.navigate, key: '>>'}, 'last'));
+			links.push(new PageLink({
+					page: Math.min(this.state.page + 1, pageCount - 1),
+					enabled: this.state.page !== pageCount - 1,
+					callback: this.navigate,
+					key: '>'},
+				'next'));
+			links.push(new PageLink({
+				page: pageCount - 1,
+				enabled: this.state.page !== pageCount - 1,
+				callback: this.navigate,
+				key: '>>'},
+			'last'));
 		}
 		return <span>
 			{page}
-			{links.length > 0 && <span className='pageLinks'>Page {this.state.page + 1} of {pageCount}: {links}</span>}
+			{links.length > 0 && <span className='pageLinks'>{links}</span>}
 		</span>;
 	},
 
