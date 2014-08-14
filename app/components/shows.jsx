@@ -133,12 +133,8 @@ var Shows = React.createClass({
 		var links = [];
 		var pageCount = Math.ceil(shows.length / this.props.pageSize);
 		if (this.props.pageSize > 0) {
-			if (this.state.page > 0) {
-				if (this.state.page - 1 !== 0) {
-					links.push(new PageLink({page: 0, callback: this.navigate, key:'<<'}, 'first'));
-				}
-				links.push(new PageLink({page:this.state.page - 1, callback: this.navigate, key:'<'}, 'prev'));
-			}
+			links.push(new PageLink({page: 0, callback: this.navigate, key:'<<'}, 'first'));
+			links.push(new PageLink({page: Math.max(0, this.state.page - 1), callback: this.navigate, key:'<'}, 'prev'));
 			for (var i = Math.max(0, this.state.page - 3); i < this.state.page + 4 && i < pageCount; ++i) {
 				if (i === this.state.page) {
 					links.push(<a key='current' className='currentPage'>{i + 1}</a>);
@@ -146,12 +142,8 @@ var Shows = React.createClass({
 					links.push(new PageLink({page: i, callback: this.navigate, key: i}, String(i + 1)));
 				}
 			}
-			if (this.state.page + 1 < pageCount) {
-				links.push(new PageLink({page: this.state.page + 1, callback: this.navigate, key: '>'}, 'next'));
-				if (this.state.page + 1 < pageCount - 1) {
-					links.push(new PageLink({page: pageCount - 1, callback: this.navigate, key: '>>'}, 'last'));
-				}
-			}
+			links.push(new PageLink({page: Math.min(this.state.page + 1, pageCount - 1), callback: this.navigate, key: '>'}, 'next'));
+			links.push(new PageLink({page: pageCount - 1, callback: this.navigate, key: '>>'}, 'last'));
 		}
 		return <span>
 			{page}
