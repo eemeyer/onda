@@ -15,7 +15,7 @@ bundle install
 ## Build the JS
 
 ```
-./lint.sh && node deploy.js
+./lint.sh && NODE_ENV=production node deploy.js
 ```
 
 ## optimise the images

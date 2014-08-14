@@ -11,6 +11,8 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development';
 }
 
+var debug = process.env.NODE_ENV === 'development';
+
 async.series([
   function(callback) {
     [
@@ -19,18 +21,22 @@ async.series([
       console.log("Packaging JS for " + name);
       mkdirp.sync('assets/app/js/');
       var outName = name.replace(/\.jsx$/, '.js').replace(/\.js/, '.js');
-      browserify({extensions: ['.jsx']})
-      .require(path.join(__dirname, 'app', 'bundles', name), {
-        entry: true,
-        basedir: path.join(__dirname, 'app')
-      })
-      .transform('reactify')
-      .transform('envify')
-      .transform('brfs')
-      .transform('uglifyify')
-      .bundle({debug: true})
-      .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'app')))
-      .pipe(fs.createWriteStream(path.join('assets/app/js/', outName), 'w'))
+      var b = browserify({extensions: ['.jsx']})
+        .require(path.join(__dirname, 'app', 'bundles', name), {
+          entry: true,
+          basedir: path.join(__dirname, 'app')
+        })
+        .transform('reactify')
+        .transform('envify')
+        .transform('brfs');
+      if (debug) {
+        b = b.bundle({debug: true})
+          .pipe(mold.transformSourcesRelativeTo(path.join(__dirname, 'app')));
+      } else {
+        b = b.transform('uglifyify')
+          .bundle();
+      }
+      b.pipe(fs.createWriteStream(path.join('assets/app/js/', outName), 'w'))
       .on('end', function () {
         callback();
       });
