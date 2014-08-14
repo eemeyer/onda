@@ -9,19 +9,17 @@ bundle install
 
 ## development mode building
 ```
-bundle exec jekyll serve --watch --config _config.yml,_config_local.yml
-```
-
-## Build the CSS
-
-```
-./node_modules/.bin/grunt recess
+./lint.sh && node deploy.js &&  bundle exec jekyll serve --verbose --config _config.yml,_config_local.yml
 ```
 
 ## Build the JS
 
 ```
-./lint.sh
+./lint.sh && node deploy.js
+```
+
+## optimise the images
+
+```
 ./node_modules/.bin/grunt default
-node deploy.js
 ```
