@@ -7,8 +7,15 @@ var ContactLink = React.createClass({
 		return {email: 'booking@ondaband.com'};
 	},
 
+	onClick: function () {
+		if (typeof window._gaq !== 'undefined') {
+			window._gaq.push(['_trackEvent', 'Contact', 'Send Email']);
+		}
+		return true;
+	},
+
 	render: function () {
-		return <a href={'mailto:' + this.props.email}>{this.props.children}</a>;
+		return <a href={'mailto:' + this.props.email} onClick={this.onClick}>{this.props.children}</a>;
 	}
 });
 

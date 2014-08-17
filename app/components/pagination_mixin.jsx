@@ -95,6 +95,10 @@ var PaginationMixin = {
 
 	navigate: function (page) {
 		this.setState({page: page});
+		if (typeof window._gaq !== 'undefined') {
+			window._gaq.push(['_setCustomVar', 1, 'Page', String(page)]);
+			window._gaq.push(['_trackEvent', 'Navigate', 'Page']);
+		}
 	}
 };
 

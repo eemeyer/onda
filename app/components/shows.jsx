@@ -35,7 +35,11 @@ var Show = React.createClass({
 	},
 
 	display: function () {
-		this.setState({detail: !this.state.detail});
+		var detail = !this.state.detail;
+		this.setState({detail: detail});
+		if (typeof window._gaq !== 'undefined') {
+			window._gaq.push(['_trackEvent', 'Shows', (detail ? 'View Detail' : 'Hide Detail'), this.props.url]);
+		}
 		return false;
 	},
 
