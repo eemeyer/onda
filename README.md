@@ -4,6 +4,7 @@
 ## Install software
 
 ```
+brew install gsl
 bundle install
 ```
 
