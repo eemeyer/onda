@@ -14,9 +14,31 @@
 	}
 	.show-detail {
 		margin-top: 0.5rem;
+
 	}
 	a:visited {
 		color: $link-color;
+	}
+	.show-details-enter {
+		visibility: hidden;
+		opacity: 0;
+		transition: all 0.2s ease-in 0s;
+	}
+
+	.show-details-enter.show-detail-enter-active {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.show-details-leave {
+		visibility: visible;
+		opacity: 1;
+		transition: all 0.2s ease-in 0s;
+	}
+
+	.show-details-leave.show-details-leave-active {
+		visibility: hidden;
+		opacity: 0;
 	}
 }
 

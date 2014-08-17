@@ -2,7 +2,10 @@
 
 var moment = require('moment-timezone');
 var React = require('react');
+
+var ReactCSSTransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 var markdown = require('markdown').markdown;
+var merge = require('react/lib/merge');
 
 var PaginationMixin = require('./pagination_mixin');
 
@@ -13,38 +16,50 @@ var ShowDetail = React.createClass({
 
 	render: function () {
 		if (this.props.contentHtml) {
-			return <div className='show-detail' dangerouslySetInnerHTML={{__html: this.props.contentHtml}}/>;
+			return <div key={this.props.key} className='show-detail' dangerouslySetInnerHTML={{__html: this.props.contentHtml}}/>;
 		}
-		return <div className='show-detail'>{this.props.content}</div>;
+		return <div key={this.props.key} className='show-detail'>{this.props.content}</div>;
 	}
 });
 
 var ShowInfo = React.createClass({
+	getInitialState: function () {
+		return {detail: false};
+	},
+
+	toggle: function () {
+		if (!!this.props.content) {
+			this.setState({detail: !this.state.detail});
+		}
+		return false;
+	},
+
 	getDefaultProps: function () {
 		return {};
 	},
 
 	render: function () {
-		return <span>{this.props.title || this.props.venue} <span className='show-date'>{this.props.moment.format('dddd, MMMM D, YYYY')}{this.props.time && (' | ' + this.props.time)}</span>{this.props.children}</span>;
+		return <span>{this.props.title || this.props.venue} <span className='show-date'>{this.props.moment.format('dddd, MMMM D, YYYY')}{this.props.time && (' | ' + this.props.time)}</span>
+			<ReactCSSTransitionGroup transitionName='show-details'>
+				{this.state.detail ? ShowDetail(merge({key: 'open'} ,this.props)) : <noscript key={'closed'}/>}
+			</ReactCSSTransitionGroup>
+		</span>;
 	}
 });
 
-var Show = React.createClass({
-	getInitialState: function () {
-		return {detail: false};
-	},
 
-	display: function () {
-		this.setState({detail: !this.state.detail});
-		return false;
+var Show = React.createClass({
+	toggle: function () {
+		return this.refs.info.toggle();
 	},
 
 	render: function () {
 		var hasContent = !!this.props.content;
 		if (hasContent) {
-			return <li><article><a href={this.props.url} onClick={this.display}>{ShowInfo(this.props, this.state.detail && ShowDetail(this.props))}</a></article></li>;
+			return <li><article><a href={this.props.url} onClick={this.toggle}>
+			{ShowInfo(merge(this.props, {ref: 'info'}))}</a></article></li>;
 		}
-		return <li><article>{ShowInfo(this.props)}</article></li>;
+		return <li><article>{ShowInfo(merge(this.props, {ref: 'info'}))}</article></li>;
 	}
 });
 
