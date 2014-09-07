@@ -5,7 +5,8 @@ description: "Onda Jazz Band plays Brazilian and latin jazz"
 tags: [Onda, Jazz, Brazil]
 ---
 <script type="text/javascript">
-	var shows = {% include shows.json %} || [];
+  var shows = {% include shows.json %} || [];
+  var songs = {% include songs.json %} || [];
 </script>
 <a name='shows'>
 <h1 class='entry-title'>Shows</h1>
@@ -15,6 +16,11 @@ tags: [Onda, Jazz, Brazil]
   <li><article><a href="{{ site.url }}{{ post.url }}">{% if post.title %}{{ post.title }}{% else %}{{ post.venue }}{% endif %} <span class='show-date'>{{ post.when }}{% if post.time %} | {{ post.time}}{% endif %}</span></a></article></li>
 {% endfor %}
 </ul>
+<h1 class='entry-title'>Listen</h1>
+<div>
+  Here are samples from a few of our standards.
+</div>
+<div id="songPlayer"></div>
 {% if site.categories.blog %}
   <h1 class='entry-title'>Blog</h1>
   <ul class="post-list">

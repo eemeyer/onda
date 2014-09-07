@@ -1,0 +1,4 @@
+[{% for song in site.data.songs %}{
+"title":{{ song.title | jsonify }},
+"url":"{{ site.media_url }}{{ song.url }}"
+}{% if forloop.last %}{% else %},{% endif %}{% endfor %}]

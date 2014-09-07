@@ -38,3 +38,10 @@ span.pageLinks {
 		}
 	}
 }
+
+#songPlayer ul {
+	list-style-type: none;
+	li i.icon {
+		padding-right: 0.5em;
+	}
+}

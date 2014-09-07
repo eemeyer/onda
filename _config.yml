@@ -7,6 +7,7 @@ search:           false
 # You don't need to specify the protocol if you want it available on http and https. Example: //localhost:4000
 url:              http://www.ondaband.com
 locale: en_US
+media_url: http://media.ondaband.com
 
 # Owner/author information
 owner:
